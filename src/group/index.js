@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import debounce from "lodash.debounce";
 
 import "./group.css"
 
@@ -11,7 +12,7 @@ export const Home = () => {
         return handleApiData(getData)
     }
 
-
+ 
     const getFetchedValue = (e) => {
         const query = e.target.value;
         return getSearchData(query).then(data => data)
@@ -19,7 +20,7 @@ export const Home = () => {
     }
 
     return <div className="home-page"> 
-        <input onChange={(e) => getFetchedValue(e)} />      
+        <input onChange={debounce((e) => {getFetchedValue(e)}, 1000)} />      
       <div>
         
       </div>
